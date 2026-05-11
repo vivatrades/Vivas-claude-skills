@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>100+ Claude Skills That Actually Matter</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0d;
+    --paper: #f5f0e8;
+    --accent: #c8401a;
+    --accent2: #2a5c8a;
+    --muted: #8a8278;
+    --rule: #d4cfc4;
+    --card: #faf7f2;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    padding: 0;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 80px 40px 70px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.08;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; right: -40px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: var(--accent2);
+    opacity: 0.07;
+  }
+
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 8vw, 88px);
+    font-weight: 900;
+    line-height: 1.0;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: 16px;
+    color: #a09890;
+    max-width: 520px;
+    margin: 0 auto 32px;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-stat {
+    display: inline-flex;
+    gap: 40px;
+    border-top: 1px solid #2a2825;
+    padding-top: 28px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--paper);
+    display: block;
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: #6a6460;
+    text-transform: uppercase;
+  }
+
+  /* NAV / TOC */
+  .toc {
+    background: var(--accent);
+    padding: 28px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    justify-content: center;
+  }
+
+  .toc a {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.85);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .toc a:hover { color: #fff; }
+
+  /* MAIN */
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* SECTION */
+  .section {
+    margin-top: 72px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 8px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--rule);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  .section-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-left: auto;
+    flex-shrink: 0;
+  }
+
+  /* SKILLS GRID */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .skill-card {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 16px 18px;
+    position: relative;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+
+  .skill-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .skill-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 6px;
+    display: block;
+  }
+
+  .skill-name {
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 5px;
+    line-height: 1.3;
+  }
+
+  .skill-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* CALLOUT */
+  .callout {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 40px;
+    margin-top: 72px;
+    border-radius: 4px;
+    text-align: center;
+  }
+
+  .callout h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .callout p {
+    color: #8a8278;
+    font-size: 14px;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: #3a3530;
+    text-align: center;
+    padding: 32px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    margin-top: 80px;
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 60px 24px 50px; }
+    .hero-stat { gap: 24px; }
+    .toc { padding: 20px 24px; }
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">The definitive guide</div>
+  <h1>100+ Claude<br>Skills That <em>Actually</em><br>Matter</h1>
+  <p class="hero-sub">Not a list of prompts. A map of leverage points — the real things that separate people who use Claude from people who deploy it.</p>
+  <div class="hero-stat">
+    <div class="stat-item">
+      <span class="stat-num">108</span>
+      <span class="stat-label">Skills</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">9</span>
+      <span class="stat-label">Categories</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">0</span>
+      <span class="stat-label">Fluff</span>
+    </div>
+  </div>
+</div>
+
+<!-- TOC -->
+<nav class="toc">
+  <a href="#writing">Writing</a>
+  <a href="#automation">Automation</a>
+  <a href="#business">Business</a>
+  <a href="#productivity">Productivity</a>
+  <a href="#programming">Programming</a>
+  <a href="#ai-prompting">AI & Prompting</a>
+  <a href="#ecommerce">E-commerce</a>
+  <a href="#finance">Finance</a>
+  <a href="#research">Research</a>
+</nav>
+
+<div class="container">
+
+  <!-- 1. WRITING -->
+  <div class="section" id="writing">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <span class="section-title">Writing</span>
+      <span class="section-count">12 skills</span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card"><span class="skill-num">#001</span><div class="skill-name">Voice mirroring</div><div class="skill-desc">Feed Claude 3–5 samples of your writing. It learns your rhythm, vocabulary, and tone — then writes as you.</div></div>
+      <div class="skill-card"><span class="skill-num">#002</span><div class="skill-name">The Socratic rewrite</div><div class="skill-desc">Ask Claude to argue against your own draft. The counterarguments reveal the holes before your audience does.</div></div>
+      <div class="skill-card"><span class="skill-num">#003</span><div class="skill-name">Layered editing</div><div class="skill-desc">Run three passes: structure, then clarity, then line-level. Each in a separate prompt. Deeper than one-shot editing.</div></div>
+      <div class="skill-card"><span class="skill-num">#004</span><div class="skill-name">Audience translation</div><div class="skill-desc">Rewrite the same content for a 12-year-old, a CEO, and a domain expert — simultaneously. Reveals what you actually know.</div></div>
+      <div class="skill-card"><span class="skill-num">#005</span><div class="skill-name">Cold open extraction</div><div class="skill-desc">Paste a long piece. Ask Claude to pull the single most compelling sentence buried inside it. Use it as the lede.</div></div>
+      <div class="skill-card"><span class="skill-num">#006</span><div class="skill-name">Persona drafting</div><div class="skill-desc">Write as a fictional expert — a jaded hedge fund manager, a first-generation immigrant, a burned-out surgeon. Unlocks voice and specificity.</div></div>
+      <div class="skill-card"><span class="skill-num">#007</span><div class="skill-name">Newsletter scaffolding</div><div class="skill-desc">Build a repeatable issue structure (hook → insight → example → CTA) and let Claude fill each slot consistently week to week.</div></div>
+      <div class="skill-card"><span class="skill-num">#008</span><div class="skill-name">Objection pre-loading</div><div class="skill-desc">Before publishing anything persuasive, ask Claude: "What are the 5 strongest objections a skeptical reader would have?" Answer them in the piece.</div></div>
+      <div class="skill-card"><span class="skill-num">#009</span><div class="skill-name">Tweet thread surgery</div><div class="skill-desc">Paste any thread. Ask Claude to tighten every tweet to under 200 characters without losing the argument. Forces compression.</div></div>
+      <div class="skill-card"><span class="skill-num">#010</span><div class="skill-name">Subtext injection</div><div class="skill-desc">Ask Claude to add emotional subtext to flat, informational prose — the undercurrent that makes readers feel something.</div></div>
+      <div class="skill-card"><span class="skill-num">#011</span><div class="skill-name">Book chapter outliner</div><div class="skill-desc">Give Claude your thesis + 3 key points. Get a full chapter arc with scene suggestions, transitions, and tension beats.</div></div>
+      <div class="skill-card"><span class="skill-num">#012</span><div class="skill-name">Memory-to-scene converter</div><div class="skill-desc">Dump a raw memory in messy notes. Ask Claude to render it as a vivid scene with sensory detail — memoir gold.</div></div>
+    </div>
+  </div>
+
+  <!-- 2. AUTOMATION -->
+  <div class="section" id="automation">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <span class="section-title">Automation</span>
+      <span class="section-count">12 skills</span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card"><span class="skill-num">#013</span><div class="skill-name">Webhook pipeline design</div><div class="skill-desc">Describe your data flow in plain English. Claude generates the full webhook architecture — endpoints, payloads, error handling.</div></div>
+      <div class="skill-card"><span class="skill-num">#014</span><div class="skill-name">SOP writer</div><div class="skill-desc">Walk Claude through a process once in messy notes. Get a clean, numbered SOP with decision branches — ready to hand to anyone.</div></div>
+      <div class="skill-card"><span class="skill-num">#015</span><div class="skill-name">Zapier / Make logic builder</div><div class="skill-desc">Describe what you want to automate. Claude maps the exact steps, filters, and conditions before you touch the tool.</div></div>
+      <div class="skill-card"><span class="skill-num">#016</span><div class="skill-name">Email triage rules</div><div class="skill-desc">Paste your inbox types. Claude writes Gmail filter logic + suggested auto-reply templates for each category.</div></div>
+      <div class="skill-card"><span class="skill-num">#017</span><div class="skill-name">Cron job scheduler</div><div class="skill-desc">Describe a recurring task in plain English. Get the exact cron expression + the script to run it.</div></div>
+      <div class="skill-card"><span class="skill-num">#018</span><div class="skill-name">Data pipeline scaffolding</div><div class="skill-desc">Define source → transform → destination. Claude writes the Python skeleton with error handling and logging built in.</div></div>
+      <div class="skill-card"><span class="skill-num">#019</span><div class="skill-name">Alert system design</div><div class="skill-desc">Describe what you want to monitor (price, uptime, threshold). Claude designs the full alerting stack — detector, channel, payload.</div></div>
+      <div class="skill-card"><span class="skill-num">#020</span><div class="skill-name">n8n workflow draft</div><div class="skill-desc">Describe the automation goal. Claude produces the node-by-node n8n workflow logic before you open the editor.</div></div>
+      <div class="skill-card"><span class="skill-num">#021</span><div class="skill-name">Regex generator</div><div class="skill-desc">Describe the pattern in plain English. Get the regex + a test suite of matching and non-matching examples.</div></div>
+      <div class="skill-card"><span class="skill-num">#022</span><div class="skill-name">Browser automation script</div><div class="skill-desc">Describe what you want a browser to do. Claude writes the Playwright or Puppeteer script — including waits, retries, and edge cases.</div></div>
+      <div class="skill-card"><span class="skill-num">#023</span><div class="skill-name">Slack bot logic</div><div class="skill-desc">Define the commands and behaviors you want. Claude writes the bot handler logic — slash commands, DM parsing, response formatting.</div></div>
+      <div class="skill-card"><span class="skill-num">#024</span><div class="skill-name">Notification deduplication</div><div class="skill-desc">Describe noisy alert systems. Claude designs the deduplication and throttling logic to silence the noise without missing signals.</div></div>
+    </div>
+  </div>
+
+  <!-- 3. BUSINESS -->
+  <div class="section" id="business">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <span class="section-title">Business</span>
+      <span class="section-count">12 skills</span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card"><span class="skill-num">#025</span><div class="skill-name">Pitch stress test</div><div class="skill-desc">Paste your pitch deck. Ask Claude to be a hostile VC and surface every weak assumption. Fix them before the room does.</div></div>
+      <div class="skill-card"><span class="skill-num">#026</span><div class="skill-name">Competitor teardown</div><div class="skill-desc">Paste a competitor's landing page or pricing page. Get a SWOT + gap analysis + where you can genuinely win.</div></div>
+      <div class="skill-card"><span class="skill-num">#027</span><div class="skill-name">Contract plain-English summary</div><div class="skill-desc">Paste any contract. Get the key obligations, red flags, and unusual clauses — in plain English. Always verify with a lawyer.</div></div>
+      <div class="skill-card"><span class="skill-num">#028</span><div class="skill-name">Job description writer</div><div class="skill-desc">Describe the role, team context, and non-negotiables. Claude writes a JD that attracts the right people and filters the wrong ones.</div></div>
+      <div class="skill-card"><span class="skill-num">#029</span><div class="skill-name">Meeting agenda builder</div><div class="skill-desc">Give Claude the goal and attendees. Get a timed agenda with pre-work, decision points, and owner assignments.</div></div>
+      <div class="skill-card"><span class="skill-num">#030</span><div class="skill-name">Pricing strategy framing</div><div class="skill-desc">Describe your offer, market, and competition. Claude outlines 3 pricing models with pros/cons and positioning language for each.</div></div>
+      <div class="skill-card"><span class="skill-num">#031</span><div class="skill-name">Difficult conversation prep</div><div class="skill-desc">Describe the situation and the other person's likely position. Claude role-plays the conversation — including their pushback.</div></div>
+      <div class="skill-card"><span class="skill-num">#032</span><div class="skill-name">Strategic one-pager</div><div class="skill-desc">Dump a messy strategy doc. Get a clean one-pager: problem, insight, approach, metrics, risks. Leadership-ready.</div></div>
+      <div class="skill-card"><span class="skill-num">#033</span><div class="skill-name">Onboarding doc creator</div><div class="skill-desc">Describe a role and your company context. Claude generates a 30/60/90-day onboarding doc with milestones and resource links.</div></div>
+      <div class="skill-card"><span class="skill-num">#034</span><div class="skill-name">Vendor evaluation matrix</div><div class="skill-desc">List your criteria and options. Claude builds a weighted scoring matrix — then shows you which vendor wins and why.</div></div>
+      <div class="skill-card"><span class="skill-num">#035</span><div class="skill-name">Board update writer</div><div class="skill-desc">Give Claude the raw numbers and context. Get a board-ready update: headline, progress, risks, asks — in under 400 words.</div></div>
+      <div class="skill-card"><span class="skill-num">#036</span><div class="skill-name">Negotiation prep brief</div><div class="skill-desc">Describe the deal and both sides' interests. Claude maps leverage points, BATNA, and the exact concessions to offer and withhold.</div></div>
+    </div>
+  </div>
+
+  <!-- 4. PRODUCTIVITY -->
+  <div class="section" id="productivity">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <span class="section-title">Productivity</span>
+      <span class="section-count">12 skills</span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card"><span class="skill-num">#037</span><div class="skill-name">Brain dump processor</div><div class="skill-desc">Paste any chaotic wall of thoughts. Claude organizes it into: decisions needed, tasks, ideas, and questions — in under 10 seconds.</div></div>
+      <div class="skill-card"><span class="skill-num">#038</span><div class="skill-name">Decision matrix builder</div><div class="skill-desc">Describe a decision with multiple options. Get a weighted matrix with criteria, scores, and a clear recommendation.</div></div>
+      <div class="skill-card"><span class="skill-num">#039</span><div class="skill-name">Weekly review template</div><div class="skill-desc">Define your goals and categories. Claude generates a personalized weekly review ritual — wins, gaps, carry-forwards, next actions.</div></div>
+      <div class="skill-card"><span class="skill-num">#040</span><div class="skill-name">Project kickoff doc</div><div class="skill-desc">Describe the project. Get a full kickoff doc: scope, stakeholders, risks, milestones, and open questions — in one pass.</div></div>
+      <div class="skill-card"><span class="skill-num">#041</span><div class="skill-name">Meeting notes to actions</div><div class="skill-desc">Paste messy meeting notes. Get a structured summary: decisions made, owners assigned, deadlines set — ready to send.</div></div>
+      <div class="skill-card"><span class="skill-num">#042</span><div class="skill-name">Priority triage</div><div class="skill-desc">List everything on your plate. Claude applies Eisenhower matrix logic and tells you what to do, delegate, schedule, or drop.</div></div>
+      <div class="skill-card"><span class="skill-num">#043</span><div class="skill-name">Deep work block designer</div><div class="skill-desc">Describe your energy patterns and task types. Claude designs a weekly deep work schedule — protected blocks with context switches minimized.</div></div>
+      <div class="skill-card"><span class="skill-num">#044</span><div class="skill-name">Email response draft factory</div><div class="skill-desc">Paste an email + your intent. Get 3 response options: direct, diplomatic, and brief. Pick your tone, send in 30 seconds.</div></div>
+      <div class="skill-card"><span class="skill-num">#045</span><div class="skill-name">Habit stack designer</div><div class="skill-desc">Describe your current morning/evening routine + goals. Claude designs a habit stack using existing anchors — no willpower required.</div></div>
+      <div class="skill-card"><span class="skill-num">#046</span><div class="skill-name">Reading summary + synthesis</div><div class="skill-desc">Paste any article or report. Get a 5-bullet summary + "so what does this mean for me" analysis based on your context.</div></div>
+      <div class="skill-card"><span class="skill-num">#047</span><div class="skill-name">Goal decomposer</div><div class="skill-desc">State a big goal. Claude breaks it into 90-day milestones → weekly outputs → daily actions. Executable from day one.</div></div>
+      <div class="skill-card"><span class="skill-num">#048</span><div class="skill-name">Async communication designer</div><div class="skill-desc">Describe a complex situation that normally needs a meeting. Claude structures it as a crisp async doc — with decision options embedded.</div></div>
+    </div>
+  </div>
+
+  <!-- 5. PROGRAMMING -->
+  <div class="section" id="programming">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <span class="section-title">Programming</span>
+      <span class="section-count">12 skills</span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card"><span class="skill-num">#049</span><div class="skill-name">Architecture review</div><div class="skill-desc">Paste your system diagram or describe your stack. Claude identifies bottlenecks, single points of failure, and scaling risks — before they bite.</div></div>
+      <div class="skill-card"><span class="skill-num">#050</span><div class="skill-name">Test suite generator</div><div class="skill-desc">Paste a function or class. Get a full test suite — happy path, edge cases, error conditions — in your testing framework of choice.</div></div>
+      <div class="skill-card"><span class="skill-num">#051</span><div class="skill-name">Code explainer</div><div class="skill-desc">Paste unfamiliar code. Claude explains what it does, why it's written that way, and flags anything suspicious — in plain English.</div></div>
+      <div class="skill-card"><span class="skill-num">#052</span><div class="skill-name">Refactor planner</div><div class="skill-desc">Paste messy code. Claude produces a prioritized refactor plan — what to fix first, what's cosmetic, what's a real risk.</div></div>
+      <div class="skill-card"><span class="skill-num">#053</span><div class="skill-name">API integration scaffolder</div><div class="skill-desc">Paste any API docs. Claude writes the auth setup, request handler, error handling, and response parser — ready to drop in.</div></div>
+      <div class="skill-card"><span class="skill-num">#054</span><div class="skill-name">SQL query builder</div><div class="skill-desc">Describe what you want from your database in plain English. Get the exact SQL — joins, CTEs, window functions included.</div></div>
+      <div class="skill-card"><span class="skill-num">#055</span><div class="skill-name">Bug hunt partner</div><div class="skill-desc">Paste the error + the relevant code. Claude diagnoses the root cause — not just the symptom — and shows the fix.</div></div>
+      <div class="skill-card"><span class="skill-num">#056</span><div class="skill-name">Documentation writer</div><div class="skill-desc">Paste a function or module. Get docstrings, README section, and usage examples — in your preferred doc format.</div></div>
+      <div class="skill-card"><span class="skill-num">#057</span><div class="skill-name">Performance profiler advisor</div><div class="skill-desc">Describe the slow part of your system. Claude identifies likely culprits and suggests profiling strategy before you instrument anything.</div></div>
+      <div class="skill-card"><span class="skill-num">#058</span><div class="skill-name">Migration script writer</div><div class="skill-desc">Describe your schema change. Claude writes the migration script — forward and rollback — with data integrity checks.</div></div>
+      <div class="skill-card"><span class="skill-num">#059</span><div class="skill-name">Security audit (basic)</div><div class="skill-desc">Paste an endpoint or auth flow. Claude flags common vulnerabilities — injection risks, improper auth, exposed secrets — without touching production.</div></div>
+      <div class="skill-card"><span class="skill-num">#060</span><div class="skill-name">Language translation</div><div class="skill-desc">Paste Python. Get Go. Or Node. Or Rust. Claude rewrites idiomatic to the target language — not a word-for-word port.</div></div>
+    </div>
+  </div>
+
+  <!-- 6. AI & PROMPTING -->
+  <div class="section" id="ai-prompting">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <span class="section-title">AI & Prompting</span>
+      <span class="section-count">12 skills</span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card"><span class="skill-num">#061</span><div class="skill-name">Role + context + constraint framing</div><div class="skill-desc">Every strong prompt has three parts: who Claude is, what it knows, and what it can't do. Master this and outputs jump a full tier.</div></div>
+      <div class="skill-card"><span class="skill-num">#062</span><div class="skill-name">Chain-of-thought forcing</div><div class="skill-desc">Add "think step by step before answering" to any analytical prompt. Reduces hallucinations and surfaces reasoning you can audit.</div></div>
+      <div class="skill-card"><span class="skill-num">#063</span><div class="skill-name">Few-shot example loading</div><div class="skill-desc">Give Claude 2–3 examples of the exact output format you want before asking for the real thing. Consistency improves 80%.</div></div>
+      <div class="skill-card"><span class="skill-num">#064</span><div class="skill-name">Negative constraint prompting</div><div class="skill-desc">"Do NOT use bullet points. Do NOT be vague. Do NOT summarize." Negatives often work better than positives for format control.</div></div>
+      <div class="skill-card"><span class="skill-num">#065</span><div class="skill-name">Persona locking</div><div class="skill-desc">Define Claude's persona at the top of every session and it holds character throughout — useful for long projects and consistent voice.</div></div>
+      <div class="skill-card"><span class="skill-num">#066</span><div class="skill-name">Output format specification</div><div class="skill-desc">Tell Claude exactly how to structure the response — JSON, table, numbered list, paragraph — before it writes a word.</div></div>
+      <div class="skill-card"><span class="skill-num">#067</span><div class="skill-name">Iterative refinement loop</div><div class="skill-desc">First pass = rough output. Then: "Now make it 30% shorter." Then: "Add one concrete example." Each pass sharpens the knife.</div></div>
+      <div class="skill-card"><span class="skill-num">#068</span><div class="skill-name">Multi-perspective forcing</div><div class="skill-desc">"Give me 3 takes on this: an optimist, a skeptic, and a practitioner." Breaks Claude out of single-answer mode.</div></div>
+      <div class="skill-card"><span class="skill-num">#069</span><div class="skill-name">Prompt chaining</div><div class="skill-desc">Break complex tasks into sequential prompts where each output feeds the next. More reliable than one massive prompt.</div></div>
+      <div class="skill-card"><span class="skill-num">#070</span><div class="skill-name">Hallucination checking</div><div class="skill-desc">After any factual response, ask: "Which claims in your answer are you least confident about?" Claude self-flags the weak spots.</div></div>
+      <div class="skill-card"><span class="skill-num">#071</span><div class="skill-name">Temperature simulation via prompt</div><div class="skill-desc">"Be creative and surprising" vs "Be precise and conservative" changes output behavior without touching API settings.</div></div>
+      <div class="skill-card"><span class="skill-num">#072</span><div class="skill-name">System prompt design</div><div class="skill-desc">Build a reusable system prompt for recurring tasks. Invest 20 minutes once — save hours every week. Your instructions, persistent.</div></div>
+    </div>
+  </div>
+
+  <!-- 7. E-COMMERCE -->
+  <div class="section" id="ecommerce">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <span class="section-title">E-commerce</span>
+      <span class="section-count">12 skills</span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card"><span class="skill-num">#073</span><div class="skill-name">Product description factory</div><div class="skill-desc">Feed Claude a product spec sheet. Get 3 versions: SEO-optimized, benefit-led, and story-driven. Pick per channel.</div></div>
+      <div class="skill-card"><span class="skill-num">#074</span><div class="skill-name">Customer review analyzer</div><div class="skill-desc">Paste 20+ reviews. Claude extracts: top complaints, top praises, unmet desires, and exact language customers use — gold for copy.</div></div>
+      <div class="skill-card"><span class="skill-num">#075</span><div class="skill-name">Ad copy variants</div><div class="skill-desc">Describe the product and audience. Get 10 headline/body combinations across different angles — price, outcome, fear, social proof.</div></div>
+      <div class="skill-card"><span class="skill-num">#076</span><div class="skill-name">Email sequence builder</div><div class="skill-desc">Define the customer journey stage. Claude writes the full sequence — welcome, nurture, cart abandon, re-engagement — with subject lines.</div></div>
+      <div class="skill-card"><span class="skill-num">#077</span><div class="skill-name">FAQ page generator</div><div class="skill-desc">Paste your product page. Claude generates the 15 most likely customer questions + accurate answers. Reduces support tickets immediately.</div></div>
+      <div class="skill-card"><span class="skill-num">#078</span><div class="skill-name">Return policy optimizer</div><div class="skill-desc">Paste your current policy. Claude rewrites it to be customer-friendly AND legally sound — reducing disputes without increasing abuse.</div></div>
+      <div class="skill-card"><span class="skill-num">#079</span><div class="skill-name">Upsell script builder</div><div class="skill-desc">Describe your main product and catalog. Claude writes post-purchase upsell flows — timed, relevant, and non-pushy.</div></div>
+      <div class="skill-card"><span class="skill-num">#080</span><div class="skill-name">Category page SEO</div><div class="skill-desc">Paste your category name and top products. Get SEO meta title, description, H1, and intro copy — optimized and human-readable.</div></div>
+      <div class="skill-card"><span class="skill-num">#081</span><div class="skill-name">Influencer brief creator</div><div class="skill-desc">Describe your brand and campaign. Claude generates a full creator brief — talking points, don'ts, deliverables, and example hooks.</div></div>
+      <div class="skill-card"><span class="skill-num">#082</span><div class="skill-name">Seasonal campaign planner</div><div class="skill-desc">Define the event (BFCM, Q4, Valentine's). Claude builds the full campaign calendar — content, offers, email cadence, ad timing.</div></div>
+      <div class="skill-card"><span class="skill-num">#083</span><div class="skill-name">Trust signal writer</div><div class="skill-desc">Describe your store and product. Claude writes the above-the-fold trust badges, guarantees, and social proof copy that removes purchase hesitation.</div></div>
+      <div class="skill-card"><span class="skill-num">#084</span><div class="skill-name">Chatbot script designer</div><div class="skill-desc">Define common customer intents. Claude writes the full decision tree and response scripts for your store chatbot.</div></div>
+    </div>
+  </div>
+
+  <!-- 8. FINANCE -->
+  <div class="section" id="finance">
+    <div class="section-header">
+      <span class="section-num">08</span>
+      <span class="section-title">Finance</span>
+      <span class="section-count">12 skills</span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card"><span class="skill-num">#085</span><div class="skill-name">Earnings call decoder</div><div class="skill-desc">Paste an earnings transcript. Claude separates signal from spin — what management emphasized, what they avoided, what changed from last quarter.</div></div>
+      <div class="skill-card"><span class="skill-num">#086</span><div class="skill-name">Personal budget analyzer</div><div class="skill-desc">Paste your last 3 months of transactions. Claude categorizes, flags anomalies, and identifies the 3 highest-leverage cuts — no judgment, just math.</div></div>
+      <div class="skill-card"><span class="skill-num">#087</span><div class="skill-name">Investment thesis builder</div><div class="skill-desc">Describe an asset you're considering. Claude builds the bull case, bear case, and key assumptions to validate — before you commit capital.</div></div>
+      <div class="skill-card"><span class="skill-num">#088</span><div class="skill-name">Risk/reward calculator framing</div><div class="skill-desc">Describe a trade or investment. Claude structures the max loss, max gain, probability-weighted expected value, and position sizing logic.</div></div>
+      <div class="skill-card"><span class="skill-num">#089</span><div class="skill-name">Financial model explainer</div><div class="skill-desc">Paste a DCF, LBO, or cap table. Claude explains each assumption, what drives the output, and which inputs are most sensitive.</div></div>
+      <div class="skill-card"><span class="skill-num">#090</span><div class="skill-name">Tax scenario planner</div><div class="skill-desc">Describe your income structure and major financial moves. Claude outlines the tax implications and questions to ask your accountant. Not advice — preparation.</div></div>
+      <div class="skill-card"><span class="skill-num">#091</span><div class="skill-name">Trading journal analyzer</div><div class="skill-desc">Paste your trade log. Claude identifies patterns: your best setups, worst habits, optimal holding periods, and recurring mistakes.</div></div>
+      <div class="skill-card"><span class="skill-num">#092</span><div class="skill-name">Macro event interpreter</div><div class="skill-desc">Paste a Fed statement or CPI release. Claude translates the policy language into plain implications for rates, dollar, equities, and commodities.</div></div>
+      <div class="skill-card"><span class="skill-num">#093</span><div class="skill-name">Portfolio stress tester</div><div class="skill-desc">Describe your holdings. Claude runs scenario analysis: how does this portfolio behave in a 2008 crash, a rate spike, or a dollar collapse?</div></div>
+      <div class="skill-card"><span class="skill-num">#094</span><div class="skill-name">Business P&L reader</div><div class="skill-desc">Paste a P&L statement. Claude identifies the 3 numbers that actually matter, what's trending wrong, and what levers to pull.</div></div>
+      <div class="skill-card"><span class="skill-num">#095</span><div class="skill-name">Grant/loan application writer</div><div class="skill-desc">Describe your business and need. Claude writes the financial narrative section — use of funds, repayment logic, and business case — in lender language.</div></div>
+      <div class="skill-card"><span class="skill-num">#096</span><div class="skill-name">Options strategy explainer</div><div class="skill-desc">Describe your market view and risk tolerance. Claude explains which options structure fits, why, and what the breakeven/max loss looks like.</div></div>
+    </div>
+  </div>
+
+  <!-- 9. RESEARCH -->
+  <div class="section" id="research">
+    <div class="section-header">
+      <span class="section-num">09</span>
+      <span class="section-title">Research</span>
+      <span class="section-count">12 skills</span>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card"><span class="skill-num">#097</span><div class="skill-name">Literature synthesis</div><div class="skill-desc">Paste 5–10 abstracts on a topic. Claude synthesizes the consensus, the debates, and the open questions — in under 300 words.</div></div>
+      <div class="skill-card"><span class="skill-num">#098</span><div class="skill-name">Hypothesis generator</div><div class="skill-desc">Describe what you're investigating. Claude generates 5–10 testable hypotheses you haven't considered, ranked by feasibility.</div></div>
+      <div class="skill-card"><span class="skill-num">#099</span><div class="skill-name">Interview question designer</div><div class="skill-desc">Define your research goal and subject. Claude builds a full semi-structured interview guide — including probes and follow-up pivots.</div></div>
+      <div class="skill-card"><span class="skill-num">#100</span><div class="skill-name">Survey instrument builder</div><div class="skill-desc">Describe what you're trying to measure. Claude writes the survey questions, scales, and logic — and flags biased or leading items.</div></div>
+      <div class="skill-card"><span class="skill-num">#101</span><div class="skill-name">Data interpretation partner</div><div class="skill-desc">Paste your results table or chart. Claude identifies what the data actually shows, what it doesn't, and what follow-up questions it opens.</div></div>
+      <div class="skill-card"><span class="skill-num">#102</span><div class="skill-name">Academic paper summarizer</div><div class="skill-desc">Paste a dense paper. Get: core claim, methodology, key findings, limitations, and "so what" — in 5 bullets. Saves 40 minutes per paper.</div></div>
+      <div class="skill-card"><span class="skill-num">#103</span><div class="skill-name">Competitive intelligence builder</div><div class="skill-desc">Describe your market. Claude builds a structured competitor intelligence framework — what to track, where to find it, how often to update it.</div></div>
+      <div class="skill-card"><span class="skill-num">#104</span><div class="skill-name">Source credibility checker</div><div class="skill-desc">Paste a claim + its source. Claude evaluates credibility signals — methodology, sample size, publication bias, who funded it.</div></div>
+      <div class="skill-card"><span class="skill-num">#105</span><div class="skill-name">Industry report decoder</div><div class="skill-desc">Paste a market research report. Claude extracts the 5 most actionable insights and flags which "findings" are just paid sponsor talking points.</div></div>
+      <div class="skill-card"><span class="skill-num">#106</span><div class="skill-name">Trend signal vs noise filter</div><div class="skill-desc">Describe a trend you're seeing. Claude stress-tests it: is this structural or cyclical? What would have to be true for it to matter?</div></div>
+      <div class="skill-card"><span class="skill-num">#107</span><div class="skill-name">Second-order effects analyst</div><div class="skill-desc">Describe a change or event. Claude maps first, second, and third-order consequences — the ones everyone else misses.</div></div>
+      <div class="skill-card"><span class="skill-num">#108</span><div class="skill-name">Research brief writer</div><div class="skill-desc">Describe what you need to know and why. Claude writes the research brief — scope, questions, sources to consult, and success criteria — before anyone lifts a finger.</div></div>
+    </div>
+  </div>
+
+  <!-- CALLOUT -->
+  <div class="callout">
+    <h2>These aren't prompts. They're leverage points.</h2>
+    <p>The difference between 11 million daily users and the top 1% isn't access. It's knowing which of these to reach for — and when.</p>
+  </div>
+
+</div>
+
+<footer>
+  108 SKILLS · 9 CATEGORIES · BUILT WITH CLAUDE · FREE FOREVER
+</footer>
+
+</body>
+</html>
